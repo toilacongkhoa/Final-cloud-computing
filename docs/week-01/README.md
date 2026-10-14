@@ -22,7 +22,29 @@ Blue là phiên bản hiện tại, green là bản thay thế. CodeDeploy tạo
 
 Thiết kế dự kiến dùng một ECS service với controller CODE_DEPLOY, Fargate 0,25 vCPU / 512 MiB, desired count 1; hai target group loại ip, HTTP 8080. Chọn canary 10% trong năm phút, rồi chuyển phần còn lại nếu deployment tiếp tục bình thường.
 
-[Xem sơ đồ kiến trúc blue/green (Mermaid Flowchart)](soDoKienTrucTuan1.md)
+```mermaid
+flowchart LR
+    Demo["Máy demo"]
+    CodeDeploy["CodeDeploy dùng LabRole"]
+    Services["ECR lưu image • CloudWatch giám sát"]
+
+    subgraph Network["us-east-1 | Default VPC | Hai subnet ở us-east-1a và us-east-1b"]
+        ALB["ALB<br/>Production 80 / Test 8080"]
+        TargetA["Target group A"]
+        TargetB["Target group B"]
+        Current["ECS task set hiện tại"]
+        Replacement["ECS task set thay thế"]
+
+        ALB --> TargetA
+        ALB --> TargetB
+        TargetA --> Current
+        TargetB --> Replacement
+    end
+
+    Demo --> ALB
+    CodeDeploy -.-> ALB
+    CodeDeploy -.-> Current
+```
 
 Hình 1  Kiến trúc blue/green dự kiến trên ECS.
 
