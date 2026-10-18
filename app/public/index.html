@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi" data-color="{{color}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{colorLabel}} · v{{version}} | ECS Blue/Green Demo</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="card">
+    <header>
+      <span class="project-name">ECS BLUE/GREEN DEMO</span>
+      <span class="badge">{{colorLabel}}</span>
+    </header>
+
+    <p class="eyebrow">PHIÊN BẢN ĐANG PHẢN HỒI</p>
+    <h1>Xin chào từ <span>{{colorLabel}}.</span></h1>
+    <p class="description">{{message}}</p>
+
+    <dl class="details">
+      <div><dt>Phiên bản</dt><dd>v{{version}}</dd></div>
+      <div><dt>Màu triển khai</dt><dd>{{colorLabel}}</dd></div>
+      <div><dt>Hostname</dt><dd><code>{{hostname}}</code></dd></div>
+    </dl>
+
+    <nav aria-label="Kiểm tra ứng dụng">
+      <a class="button primary" href="/">Tải lại trang</a>
+      <a class="button" href="/version" target="_blank" rel="noopener">Xem /version ↗</a>
+      <a class="button" href="/health" target="_blank" rel="noopener">Xem /health ↗</a>
+    </nav>
+
+    <footer>AWS Learner Lab · ECS / Fargate · ALB · CodeDeploy</footer>
+  </main>
+</body>
+</html>

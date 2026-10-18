@@ -1,0 +1,30 @@
+{
+  "family": "ecs-bluegreen-demo",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "runtimePlatform": { "cpuArchitecture": "X86_64", "operatingSystemFamily": "LINUX" },
+  "executionRoleArn": "<VERIFIED_LAB_ROLE_ARN>",
+  "containerDefinitions": [
+    {
+      "name": "demo-app",
+      "image": "<ECR_IMAGE_URI_WITH_TAG_OR_DIGEST>",
+      "essential": true,
+      "portMappings": [{ "containerPort": 8080, "protocol": "tcp" }],
+      "environment": [{ "name": "PORT", "value": "8080" }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/ecs-bluegreen-demo",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "tags": [
+    { "key": "Project", "value": "ecs-bluegreen-demo" },
+    { "key": "Owner", "value": "khoa-dat" }
+  ]
+}

@@ -1,2 +1,11 @@
 HUONG_DAN_TRIEN_KHAI.md
 /.codex-lessons.md
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+coverage/
+infra/aws/generated/
+.local/
+/aws-credentials
