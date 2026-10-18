@@ -1,6 +1,6 @@
-# Kết quả kiểm thử trước bàn giao — 18/10/2026
+# Kết quả kiểm thử — 18/10/2026
 
-Phạm vi: ứng dụng Blue/Green, Docker images và kiểm tra tĩnh template AWS. Chưa phải biên bản triển khai thành công trên AWS Learner Lab.
+Đã kiểm thử ứng dụng Blue/Green, hai Docker image và đối chiếu cấu hình ECS/AppSpec. Phần triển khai trên Learner Lab chưa được kiểm thử.
 
 ## Kết quả
 
@@ -27,7 +27,7 @@ Các kiểm thử HTTP bao gồm Blue/Green, HTML/CSS/API, query string, HEAD, 4
 
 Đã sửa xử lý URL sai: trả HTTP 400 và giữ server hoạt động, thay vì để lỗi parse URL làm process dừng.
 
-Giao diện hai phiên bản đã được kiểm tra bằng trình duyệt ở các bước trước: giữ trang cơ bản, bỏ câu mô tả/phần ghi chú và bỏ viền màu trên khung theo yêu cầu.
+Đã kiểm tra giao diện Blue/Green trên trình duyệt: màu, số phiên bản, hostname và các liên kết `/version`, `/health` hiển thị đúng.
 
 ## Chạy lại
 
@@ -49,8 +49,6 @@ docker run --rm --mount "type=bind,source=$testPath,target=/app/app/tests,readon
 
 ## Phần cần người phụ trách AWS xác minh
 
-Ba placeholder trong task definition/AppSpec được giữ nguyên có chủ đích: ARN LabRole đã xác minh, URI image ECR và ARN task definition revision. Kiểm tra tĩnh không xác nhận quyền IAM hoặc API AWS sẽ chấp nhận cấu hình trong Lab cụ thể.
+Trước khi triển khai, cần điền ARN LabRole, URI image ECR và ARN task definition revision vào các file mẫu. Quyền IAM cần kiểm tra trong Lab của nhóm.
 
 Chưa kiểm thử push ECR, chạy ECS/Fargate thật, ALB health/traffic, CodeDeploy canary và rollback. Các bước này cần thực hiện trong đúng Learner Lab của nhóm theo [hướng dẫn bàn giao AWS](aws-handoff.md), rồi bổ sung minh chứng Account ID, Region và thời gian. Kết quả local/Docker không thay thế minh chứng AWS.
-
-Codex hỗ trợ mã nguồn, cấu hình, kiểm thử và tài liệu. Sinh viên cần tự rà soát, giải thích và ghi giờ thực tế trong worklog; tài liệu này không tự ghi nhận số giờ hoặc kết quả triển khai AWS cho sinh viên.

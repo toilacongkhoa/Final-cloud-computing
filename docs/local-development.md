@@ -90,6 +90,6 @@ Sau khi thử, dừng container:
 docker stop bg-blue bg-green
 ```
 
-## Minh chứng và AI
+## Ghi nhận kết quả
 
-Tách minh chứng local và AWS; chỉ ghi triển khai thành công AWS khi đã chạy thật. Ghi giờ thực tế của từng SV. Khai báo Codex hỗ trợ sinh mã ứng dụng, Dockerfile, template, kiểm thử và tài liệu; SV phải rà soát và giải thích được sản phẩm.
+Lưu kết quả chạy local và ảnh triển khai AWS theo từng tuần. Worklog ghi công việc, người thực hiện và thời gian thực tế.

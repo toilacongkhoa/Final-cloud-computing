@@ -44,6 +44,4 @@ npm test
 - [Kết quả kiểm thử trước bàn giao](docs/pre-handoff-checks.md).
 - [Báo cáo Tuần 1](reports/week-01/README.md).
 
-Template AWS còn placeholder cần thay bằng tài nguyên thật. Chạy local chưa phải minh chứng triển khai thành công trên AWS Learner Lab. Báo cáo Tuần 1 được giữ nguyên.
-
-AI hỗ trợ: Codex hỗ trợ sinh mã ứng dụng, cấu hình Docker/AWS, kiểm thử và tài liệu. Sinh viên cần rà soát, triển khai trên Learner Lab và giải thích được cấu hình/mã nguồn khi vấn đáp; ghi công việc và giờ thực tế vào worklog.
+Trước khi triển khai AWS, điền ARN LabRole, URI image ECR và ARN task definition vào các file mẫu trong `infra/aws/`. Hiện đã kiểm thử ứng dụng và Docker trên máy; phần triển khai Learner Lab thực hiện theo hướng dẫn trong `docs/aws-handoff.md`.

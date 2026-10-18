@@ -1,6 +1,6 @@
 # Bàn giao cấu hình AWS — Tuần 2
 
-Đây là hướng dẫn sử dụng ứng dụng và template, chưa phải tài nguyên đã triển khai. Thay placeholder `<...>` bằng giá trị thật trước khi sử dụng.
+Các bước đưa ứng dụng lên ECR, chạy Blue trên ECS và cập nhật Green qua CodeDeploy. Thay các giá trị `<...>` trong file mẫu bằng thông tin từ Learner Lab của nhóm.
 
 ## Các giá trị cần thống nhất
 
@@ -76,7 +76,7 @@ Sau lần tạo service đầu tiên, triển khai phiên bản mới qua CodeDe
 - Target healthy, website qua ALB, `/health` trả 200.
 - CodeDeploy thành công và production đổi Blue → Green.
 - Tags đã lưu; ảnh/CLI có Account ID, Region, thời gian.
-- Worklog giờ thực tế, khai báo AI và nội dung báo cáo trực tiếp trên website môn học.
+- Worklog ghi công việc, người thực hiện và giờ thực tế; nộp nội dung báo cáo trực tiếp trên website môn học.
 
 Ghi ngân sách/chi phí, dọn tài nguyên dự án theo yêu cầu. Giảm desired count về 0 chưa dừng chi phí ALB; người phụ trách AWS cần dọn tài nguyên tính phí liên quan. Không xóa default VPC/subnet hoặc tài nguyên bài khác.
 
