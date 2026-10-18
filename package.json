@@ -1,0 +1,14 @@
+{
+  "name": "ecs-bluegreen-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AWS Learner Lab ECS/CodeDeploy blue-green deployment demo",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node app/src/server.js",
+    "start:blue": "node app/src/server.js --release blue",
+    "start:green": "node app/src/server.js --release green",
+    "test": "node --test app/tests/*.test.js"
+  }
+}
