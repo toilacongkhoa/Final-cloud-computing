@@ -9,3 +9,5 @@ coverage/
 infra/aws/generated/
 .local/
 /aws-credentials
+/reports/aws-rebuild
+/evidence/week-03/data

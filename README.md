@@ -43,5 +43,6 @@ npm test
 - [Cấu hình và bàn giao AWS](docs/aws-handoff.md).
 - [Kết quả kiểm thử trước bàn giao](docs/pre-handoff-checks.md).
 - [Báo cáo Tuần 1](reports/week-01/README.md).
+- [Báo cáo Tuần 3](reports/week-03/README.md).
 
 Trước khi triển khai AWS, điền ARN LabRole, URI image ECR và ARN task definition vào các file mẫu trong `infra/aws/`. Hiện đã kiểm thử ứng dụng và Docker trên máy; phần triển khai Learner Lab thực hiện theo hướng dẫn trong `docs/aws-handoff.md`.

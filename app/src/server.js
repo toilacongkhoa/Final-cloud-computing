@@ -10,7 +10,7 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
 }[char]));
 
 // One process serves one release. CodeDeploy changes which process receives traffic.
-export function createApp(releaseName = 'blue', logger = console.log) {
+export function createApp(releaseName = 'blue', logger = console.log, faults = {}) {
   if (!['blue', 'green'].includes(releaseName)) {
     throw new Error('APP_RELEASE must be blue or green');
   }
@@ -52,9 +52,11 @@ export function createApp(releaseName = 'blue', logger = console.log) {
       res.setHeader('Allow', 'GET, HEAD');
       return json(405, { error: 'Method not allowed' });
     }
+    // Deliberate lab faults are opt-in and keep health and application errors separate.
+    if (path === '/health') return json(faults.health ? 503 : 200, { status: faults.health ? 'unhealthy' : 'ok' });
+    if (faults.app && (path === '/' || path === '/version')) return json(500, { error: 'Intentional lab application failure', ...metadata });
     if (path === '/') return send(200, 'text/html; charset=utf-8', html);
     if (path === '/styles.css') return send(200, 'text/css; charset=utf-8', stylesheet);
-    if (path === '/health') return json(200, { status: 'ok' });
     if (path === '/version') return json(200, metadata);
     if (path === '/favicon.ico') return send(204, 'image/x-icon', '');
     return json(404, { error: 'Not found' });
@@ -73,7 +75,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     if (!Number.isInteger(port) || port < 1 || port > 65535) {
       throw new Error('PORT must be an integer between 1 and 65535');
     }
-    const server = createApp(releaseName);
+    const server = createApp(releaseName, console.log, {
+      health: process.env.FAIL_HEALTH === '1',
+      app: process.env.FAIL_APP === '1'
+    });
     server.on('error', (error) => { console.error(error.message); process.exitCode = 1; });
     server.listen(port, '0.0.0.0', () => {
       console.log(JSON.stringify({ event: 'listening', port, release: releaseName }));

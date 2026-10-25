@@ -70,6 +70,29 @@ test('a malformed request returns 400 without crashing the server', async (t) =>
 });
 
 const serverPath = fileURLToPath(new URL('../src/server.js', import.meta.url));
+for (const [name, faults, healthStatus, appStatus] of [
+  ['bad health', { health: true }, 503, 200],
+  ['bad application', { app: true }, 200, 500]
+]) {
+  test(`${name}: isolates health failure from application failure and logs real status`, async (t) => {
+    const logs = [];
+    const server = createApp('green', (line) => logs.push(JSON.parse(line)), faults);
+    server.listen(0, '127.0.0.1');
+    await once(server, 'listening');
+    t.after(() => new Promise((resolve) => server.close(resolve)));
+    const base = `http://127.0.0.1:${server.address().port}`;
+    for (const [path, expected] of [['/health', healthStatus], ['/', appStatus], ['/version', appStatus]]) {
+      const response = await fetch(`${base}${path}`);
+      assert.equal(response.status, expected);
+      await response.text();
+      assert.ok(logs.some((entry) => entry.path === path && entry.status === expected));
+    }
+    const head = await fetch(`${base}/health`, { method: 'HEAD' });
+    assert.equal(head.status, healthStatus);
+    assert.equal(await head.text(), '');
+  });
+}
+
 for (const scenario of [
   { name: 'invalid port', env: { PORT: '-1' }, args: [], error: /PORT must be/ },
   { name: 'invalid release', env: { APP_RELEASE: 'purple' }, args: [], error: /APP_RELEASE must be/ },
