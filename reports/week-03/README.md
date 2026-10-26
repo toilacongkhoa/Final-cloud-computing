@@ -33,3 +33,7 @@ Sinh viên Nguyễn Tiến Đạt | MSSV 24110194
 ## 6 Minh chứng
 
 [Xem nội dung](06-evidence.md)
+
+## 7 Kế hoạch tuần 4
+
+[Xem nội dung](07-week-04-plan.md)
