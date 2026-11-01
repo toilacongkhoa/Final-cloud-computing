@@ -4,7 +4,6 @@
 
 - Video: [Xem demo Blue/Green ECS và CodeDeploy](https://drive.google.com/file/d/17kW_Dxf9iRq7HuKnb4V84pJlvBOLkvD5/view).
 - Thời lượng theo nhóm cung cấp: khoảng 3 phút.
-- Trước khi nộp, xác nhận quyền chia sẻ cho phép giảng viên mở video.
 
 ## Chi phí AWS
 
