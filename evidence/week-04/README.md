@@ -3,7 +3,7 @@
 ## Video demo
 
 - Video: [Xem demo Blue/Green ECS và CodeDeploy](https://drive.google.com/file/d/17kW_Dxf9iRq7HuKnb4V84pJlvBOLkvD5/view).
-- Slide nghiệm thu: [Slide-Report.pdf](../../reports/week-04/Slide-Report.pdf).
+- Slide: [Slide-Report.pdf](../../reports/week-04/Slide-Report.pdf).
 
 ## Chi phí AWS
 
